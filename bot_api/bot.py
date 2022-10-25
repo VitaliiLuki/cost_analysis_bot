@@ -7,9 +7,18 @@ from dotenv import load_dotenv
 from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
 
 load_dotenv()
-
+ID_TOKEN = 205732562
+BOT_TOKEN = '5508517134:AAElpf_IXLiNHsz7_OWXyLJ2uTqD-X8LW0I'
+# Для хранения секретных ключей и токенов используется библиотека
+# dotenv
+# Перед запуском впишите свой chat_id 
+# его можно узнать написав боту "userinfobot"
+# для получения токена тетеграм-бота, напишите BotFather
+# создайте своего бота и вы получите токен
 TELEGRAM_CHAT_ID = os.getenv('ID_TOKEN')
 TELEGRAM_BOT_TOKEN = os.getenv('BOT_TOKEN')
+PATH_TO_FILE = os.path.exists('costs_data/')
+
 
 bot = telegram.Bot(token=TELEGRAM_BOT_TOKEN)
 
@@ -19,6 +28,8 @@ pattern = re.compile(r'\D+|\s+|\W+')
 
 
 def costs_per_month(update, context):
+    """Функция открывает созданный для пользователя файл, 
+    собирает данные в словарь и находит сумму затрат за месяц."""
     file_parts = update.message.chat
     user_id = str(file_parts.id)
     file_name = f'{file_parts.first_name}{file_parts.last_name}{user_id[0:3]}'
@@ -52,6 +63,8 @@ def costs_per_month(update, context):
 
 
 def costs_per_week(update, context):
+    """Функция открывает созданный для пользователя файл, 
+    собирает данные в словарь и находит сумму затрат за неделю."""
     file_parts = update.message.chat
     user_id = str(file_parts.id)
     file_name = f'{file_parts.first_name}{file_parts.last_name}{user_id[0:3]}'
@@ -84,6 +97,7 @@ def costs_per_week(update, context):
 
 
 def start(update, context):
+    """Функция приветствия и создания кнопок для пользования ботом."""
     chat = update.effective_chat
     user_name = update.message.chat.first_name
     message = (
@@ -106,6 +120,7 @@ def start(update, context):
 
 
 def write_data(update, context):
+    """Создает и записывает полученные от пользователя данные в файл."""
     chat = update.effective_chat
     message = update.message.text
     file_parts = update.message.chat
@@ -139,6 +154,8 @@ costs_per_week_handler = CommandHandler('costs_per_week', costs_per_week)
 
 
 def main():
+    if not PATH_TO_FILE:
+        os.mkdir('costs_data/')
     updater.dispatcher.add_handler(start_handler)
     updater.dispatcher.add_handler(costs_per_month_handler)
     updater.dispatcher.add_handler(costs_per_week_handler)
