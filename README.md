@@ -10,7 +10,7 @@ https://github.com/VitaliiLuki/cost_analysis_bot
 Cоздать и активировать виртуальное окружение:
 
 ```
-python3 -m venv env
+python3 -m venv venv
 ```
 
 ```
