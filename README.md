@@ -1,1 +1,28 @@
-# cost_analysis_bot
+### Как запустить бота:
+
+Клонировать репозиторий и перейти в него в командной строке:
+
+```
+https://github.com/VitaliiLuki/cost_analysis_bot
+```
+
+
+Cоздать и активировать виртуальное окружение:
+
+```
+python3 -m venv env
+```
+
+```
+source venv/bin/activate
+```
+
+Установить зависимости из файла requirements.txt:
+
+```
+pip install -r requirements.txt
+```
+
+Запустить код через run:
+
+Найти в телеграмме CostAnalysisBot и написать в чате боту /start.
