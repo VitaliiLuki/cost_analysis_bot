@@ -7,8 +7,7 @@ from dotenv import load_dotenv
 from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
 
 load_dotenv()
-ID_TOKEN = 205732562
-BOT_TOKEN = '5508517134:AAElpf_IXLiNHsz7_OWXyLJ2uTqD-X8LW0I'
+
 # Для хранения секретных ключей и токенов используется библиотека
 # dotenv
 # Перед запуском впишите свой chat_id 
