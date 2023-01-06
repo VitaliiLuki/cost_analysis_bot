@@ -22,7 +22,3 @@ source venv/bin/activate
 ```
 pip install -r requirements.txt
 ```
-
-Запустить код через run:
-
-Найти в телеграмме CostAnalysisBot и написать в чате боту /start.
